@@ -1,0 +1,25 @@
+# Function to detect the sequence "101" in the input bitstream
+def non_overlapping_sequence_detector(input_stream, sequence="101"):
+    sequence_length = len(sequence)
+    count = 0  # To count the number of times the sequence appears
+    
+    i = 0  # Pointer to iterate through the input stream
+    while i <= len(input_stream) - sequence_length:
+        # Check if the current slice matches the sequence
+        if input_stream[i:i + sequence_length] == sequence:
+            count += 1  # Sequence found, increment count
+            i += sequence_length  # Skip to the end of the detected sequence (non-overlapping)
+        else:
+            i += 1  # Continue searching
+    
+    return count
+
+
+# Example input bitstream
+input_stream = "1010010110100011101"
+
+# Call the function to detect the sequence "101" in the input stream
+detected_count = non_overlapping_sequence_detector(input_stream, sequence="101")
+
+# Output the result
+print(f"The sequence '101' was detected {detected_count} times in the input stream.")
